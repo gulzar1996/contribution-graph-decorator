@@ -88,7 +88,11 @@ const nine =
 [0,0,0,0,4],
 [0,0,0,0,4]]
 
-const boxColor = ["#ebedf0", "#c6e48b", "#7bc96f", "#7bc96f", "#196127"];
+const colon =
+[0,0,1,0,1,0,0]
+
+const boxColor = ["#ebedf0", "#c6e48b", "#7bc96f", "#239a3b", "#196127"];
+const rowLength = 7;
 
 var x = document.getElementsByClassName("day");
 
@@ -120,7 +124,7 @@ function getColor(v)
 
 function drawNumber(firstDigit,offset)
 {
-    let DigitPixelPosition = offset;
+    let DigitPixelPosition = offset * rowLength;
     for (let i = 0; i<5; i++)
     {
         for (let j = 0; j<7; j++)
@@ -130,7 +134,16 @@ function drawNumber(firstDigit,offset)
         }
     }
 }
-
+function drawColon(offset)
+{
+    let ColonPixelPosition = offset * rowLength;
+    for (let i = 0; i < 7; i++)
+    {   
+        let c = getColor(colon[i])
+        x[ColonPixelPosition++].style.fill = c;
+    }
+}
+//offs is no of pixel from left
 function chooseNumber(currentTime, offs)
 {
     if(currentTime == 0)
@@ -167,13 +180,25 @@ function tick() {
     h = (h <10)?'0'+h:h;
     m = (m <10)?'0'+m:m;
     s = (s <10)?'0'+s:s;
+    s = s.toString();
+    h = h.toString();
+    m = m.toString();
+    //Display Hour
+    chooseNumber(h.charAt(0),0);
+    chooseNumber(h.charAt(1),6);
 
-    //temp
-    h=h%10;
-    m=m%10;
-    s=s%10;
+    drawColon(12);
 
-    chooseNumber(s,0);
+    //Display Minutes
+    chooseNumber(m.charAt(0),14);
+    chooseNumber(m.charAt(1),20);
+
+    drawColon(26);
+
+    //Display Seconds
+    chooseNumber(s.charAt(0),28);
+    chooseNumber(s.charAt(1),34);
+    
 
 
 
