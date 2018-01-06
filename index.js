@@ -89,10 +89,20 @@ const nine =
 [0,0,0,0,4]]
 
 const colon =
-[0,0,1,0,1,0,0]
+[0,0,2,0,2,0,0]
+
+const clock =
+[[0,0,4,4,4,0,0],
+[0,4,0,2,0,4,0],
+[4,0,0,2,0,0,4],
+[4,0,0,2,2,0,4],
+[4,0,0,0,0,0,4],
+[0,4,0,0,0,4,0],
+[0,0,4,4,4,0,0]]
 
 const boxColor = ["#ebedf0", "#c6e48b", "#7bc96f", "#239a3b", "#196127"];
 const rowLength = 7;
+const shift =  2;
 
 var x = document.getElementsByClassName("day");
 
@@ -108,6 +118,14 @@ for (let i = 0; i<7; i++)
     }
 }
 
+//Draw colon
+drawColon(shift+12);
+drawColon(shift+26);
+
+//Draw clock
+drawClock(shift+42);
+
+
 function getColor(v)
 {
      if (v == 1)
@@ -121,7 +139,18 @@ function getColor(v)
     else
     return boxColor[0];
 }
-
+function drawClock(offset)
+{
+    let ClockPixelPosition = offset * rowLength;
+    for (let i = 0; i<7; i++)
+    {
+        for (let j = 0; j<7; j++)
+        {
+            let c = getColor(clock[j][i])
+            x[ClockPixelPosition++].style.fill = c;
+        }
+    }
+}
 function drawNumber(firstDigit,offset)
 {
     let DigitPixelPosition = offset * rowLength;
@@ -172,10 +201,10 @@ function chooseNumber(currentTime, offs)
 function tick() {
     var newd = new Date();
 
-    var t = newd-d;
-    var h = Math.floor((t/(1000*60*60))%24);
-    var m = Math.floor((t/(1000*60))%60);
-    var s = Math.floor((t/1000)%60);
+    var t = newd;
+    var h = t.getHours();
+    var m = t.getMinutes();
+    var s = t.getSeconds();
 
     h = (h <10)?'0'+h:h;
     m = (m <10)?'0'+m:m;
@@ -184,20 +213,19 @@ function tick() {
     h = h.toString();
     m = m.toString();
     //Display Hour
-    chooseNumber(h.charAt(0),0);
-    chooseNumber(h.charAt(1),6);
+    chooseNumber(h.charAt(0),shift+0);
+    chooseNumber(h.charAt(1),shift+6);
 
-    drawColon(12);
+    
 
     //Display Minutes
-    chooseNumber(m.charAt(0),14);
-    chooseNumber(m.charAt(1),20);
+    chooseNumber(m.charAt(0),shift+14);
+    chooseNumber(m.charAt(1),shift+20);
 
-    drawColon(26);
 
     //Display Seconds
-    chooseNumber(s.charAt(0),28);
-    chooseNumber(s.charAt(1),34);
+    chooseNumber(s.charAt(0),shift+28);
+    chooseNumber(s.charAt(1),shift+34);
     
 
 
