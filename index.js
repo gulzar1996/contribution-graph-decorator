@@ -1,12 +1,3 @@
-const artPatterns =
-[[0,0,0,0,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,3,3,0,0,0,0,0,3,0,0,3,0,3,0,0,3,3,3,3,3,0,0,3,3,3,0,0,3,3,0,0,3,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,3,0,0,0,0,0,0,3,0,0,3,0,3,0,0,0,0,0,3,0,0,3,3,0,3,0,0,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,3,0,0,3,3,3,3,3,0,3,3,0,3,0,0,0,0,3,0,0,0,3,0,0,3,3,0,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,3,3,3,3,3,0,3,3,3,3,0,0,3,0,0,0,3,0,0,0,0,3,3,3,3,3,0,3,0,3,3,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,3,3,3,3,0,3,0,0,0,0,0,3,3,3,0,3,3,3,3,0,3,0,0,0,3,0,3,0,0,3,3,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]];
-
 const zero =
 [[4,4,4,4,4],
 [4,0,0,0,4],
@@ -97,13 +88,13 @@ const nine =
 [0,0,0,0,4],
 [0,0,0,0,4]]
 
-const boxColor = ["#ebedf0", "#c6e48b", "#7bc96f", "#7bc96f", "196127"];
+const boxColor = ["#ebedf0", "#c6e48b", "#7bc96f", "#7bc96f", "#196127"];
 
 var x = document.getElementsByClassName("day");
 
 var d = new Date(2011,8,22,13,0,0,0);
 
-let count = 0;
+
 
 function getColor(v)
 {
@@ -121,14 +112,14 @@ function getColor(v)
 
 function drawNumber(no)
 {
+    let count = 0;
     for (let i = 0; i<5; i++)
     {
-        for (let j = 0; j<5; j++)
+        for (let j = 0; j<7; j++)
         {
             let c = getColor(no[j][i])
             x[count++].style.fill = c;
         }
-        document.getElementsByClassName("f4 text-normal mb-2")[1].innerHTML = i;
     }
 }
 
@@ -151,8 +142,9 @@ function transformMiliseconds(t){
 function tick() {
     var newd = new Date();
     console.log("Ticker Function Executed");
-    var currentTime = transformMiliseconds(newd-d);
-    console.log("Time x",currentTime);
+    var currentTime = transformMiliseconds(newd-d)%10;
+    document.getElementsByClassName("f4 text-normal mb-2")[1].innerHTML = currentTime;
+
     if(currentTime == 0)
     drawNumber(zero);
     else if (currentTime == 1)
