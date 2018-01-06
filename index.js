@@ -11,6 +11,8 @@ const rowLength = artPatterns.length;
 const columnLength = artPatterns[0].length;   
 const boxColor = ["#ebedf0", "#c6e48b", "#7bc96f", "#7bc96f", "196127"];
 
+var x = document.getElementsByClassName("js-calendar-graph-svg");
+x[0].style.backgroundColor = "red";
 
 for (let i = 0; i<columnLength; i++)
 {
