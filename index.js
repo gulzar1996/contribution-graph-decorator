@@ -94,7 +94,15 @@ var x = document.getElementsByClassName("day");
 
 var d = new Date(2011,8,22,13,0,0,0);
 
-
+//CleanUp All The Pixel First 
+let cc = 0;
+for (let i = 0; i<7; i++)
+{
+    for (let j = 0; j<53; j++)
+    {
+        x[cc++].style.fill = boxColor[0];
+    }
+}
 
 function getColor(v)
 {
@@ -110,64 +118,66 @@ function getColor(v)
     return boxColor[0];
 }
 
-function drawNumber(no)
+function drawNumber(firstDigit,offset)
 {
-    let count = 0;
+    let DigitPixelPosition = offset;
     for (let i = 0; i<5; i++)
     {
         for (let j = 0; j<7; j++)
         {
-            let c = getColor(no[j][i])
-            x[count++].style.fill = c;
+            let c = getColor(firstDigit[j][i])
+            x[DigitPixelPosition++].style.fill = c;
         }
     }
 }
 
-
-
-function transformMiliseconds(t){
-    //func that transforms miliseconds in digital clock format i.e. 22:34:12
-      var h = Math.floor((t/(1000*60*60))%24);
-      var m = Math.floor((t/(1000*60))%60);
-      var s = Math.floor((t/1000)%60);
-
-      h = (h <10)?'0'+h:h;
-      m = (m <10)?'0'+m:m;
-      s = (s <10)?'0'+s:s;
-      return s;
-    //   return h+':'+m+':'+s;
+function chooseNumber(currentTime, offs)
+{
+    if(currentTime == 0)
+    drawNumber(zero,offs);
+    else if (currentTime == 1)
+    drawNumber(one,offs)
+    else if (currentTime == 2)
+    drawNumber(two,offs)
+    else if (currentTime == 3)
+    drawNumber(three,offs)
+    else if (currentTime == 4)
+    drawNumber(four,offs)
+    else if (currentTime == 5)
+    drawNumber(five,offs)
+    else if (currentTime == 6)
+    drawNumber(six,offs)
+    else if (currentTime == 7)
+    drawNumber(seven,offs)
+    else if (currentTime == 8)
+    drawNumber(eight,offs)
+    else
+    drawNumber(nine,offs)
 }
 
 //ticker function that will refresh our display every second
 function tick() {
     var newd = new Date();
-    console.log("Ticker Function Executed");
-    var currentTime = transformMiliseconds(newd-d)%10;
-    document.getElementsByClassName("f4 text-normal mb-2")[1].innerHTML = currentTime;
 
-    if(currentTime == 0)
-    drawNumber(zero);
-    else if (currentTime == 1)
-    drawNumber(one)
-    else if (currentTime == 2)
-    drawNumber(two)
-    else if (currentTime == 3)
-    drawNumber(three)
-    else if (currentTime == 4)
-    drawNumber(four)
-    else if (currentTime == 5)
-    drawNumber(five)
-    else if (currentTime == 6)
-    drawNumber(six)
-    else if (currentTime == 7)
-    drawNumber(seven)
-    else if (currentTime == 8)
-    drawNumber(eight)
-    else
-    drawNumber(nine)
+    var t = newd-d;
+    var h = Math.floor((t/(1000*60*60))%24);
+    var m = Math.floor((t/(1000*60))%60);
+    var s = Math.floor((t/1000)%60);
+
+    h = (h <10)?'0'+h:h;
+    m = (m <10)?'0'+m:m;
+    s = (s <10)?'0'+s:s;
+
+    //temp
+    h=h%10;
+    m=m%10;
+    s=s%10;
+
+    chooseNumber(s,0);
+
+
 
    }
 
-tick();
 //the runner
 var t = setInterval( tick, 1000);
