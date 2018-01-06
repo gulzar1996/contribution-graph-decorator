@@ -1,0 +1,17 @@
+{
+
+    "manifest_version": 2,
+    "name": "Contribution Decorator",
+    "version": "1.0",
+  
+    "description": "Make Github contibution graph look cooler !",
+  
+  
+    "content_scripts": [
+      {
+        "matches": ["*://github.com/gulzar1996"],
+        "js": ["index.js"]
+      }
+    ]
+  
+  }
