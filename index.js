@@ -1,4 +1,4 @@
-const artPatterns = 
+const artPatterns =
     [[0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,2,0,2,0,0,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,2,0,0,2,0,3,0,0,0,3,0,0,2,0,0,2,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -8,18 +8,23 @@ const artPatterns =
     [0,0,0,2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]];
 
 const rowLength = artPatterns.length;
-const columnLength = artPatterns[0].length;   
+const columnLength = artPatterns[0].length;
 const boxColor = ["#ebedf0", "#c6e48b", "#7bc96f", "#7bc96f", "196127"];
 
-var x = document.getElementsByClassName("js-calendar-graph-svg");
-x[0].style.backgroundColor = "red";
+var x = document.getElementsByClassName("day");
+console.log(x);
+
+document.getElementsByClassName("f4 text-normal mb-2")[1].innerHTML = x;
+x[2].style.fill = "red";
+
+// $(".day").css({ fill: "#ff0000" });
 
 for (let i = 0; i<columnLength; i++)
 {
     for (let j = 0; j<rowLength; j++)
     {
         let c = getColor(artPatterns[j][i])
-        console.log(c)
+        x.style.fill(c);
     }
 }
 
