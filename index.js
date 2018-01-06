@@ -103,8 +103,23 @@ var x = document.getElementsByClassName("day");
 
 var d = new Date(2011,8,22,13,0,0,0);
 
+let count = 0;
 
-void drawNumber(no)
+function getColor(v)
+{
+     if (v == 1)
+    return boxColor[1];
+    else if (v == 2)
+    return boxColor[2];
+    else if (v == 3)
+    return boxColor[3];
+    else if (v == 4)
+    return boxColor[4];
+    else
+    return boxColor[0];
+}
+
+function drawNumber(no)
 {
     for (let i = 0; i<5; i++)
     {
@@ -113,7 +128,8 @@ void drawNumber(no)
             let c = getColor(no[j][i])
             x[count++].style.fill = c;
         }
-    }  
+        document.getElementsByClassName("f4 text-normal mb-2")[1].innerHTML = i;
+    }
 }
 
 
@@ -123,7 +139,7 @@ function transformMiliseconds(t){
       var h = Math.floor((t/(1000*60*60))%24);
       var m = Math.floor((t/(1000*60))%60);
       var s = Math.floor((t/1000)%60);
-      
+
       h = (h <10)?'0'+h:h;
       m = (m <10)?'0'+m:m;
       s = (s <10)?'0'+s:s;
@@ -132,7 +148,7 @@ function transformMiliseconds(t){
 }
 
 //ticker function that will refresh our display every second
-function tick(){
+function tick() {
     var newd = new Date();
     console.log("Ticker Function Executed");
     var currentTime = transformMiliseconds(newd-d);
@@ -163,18 +179,3 @@ function tick(){
 tick();
 //the runner
 var t = setInterval( tick, 1000);
-
-
-function getColor(v)
-{
-     if (v == 1)
-    return boxColor[1];
-    else if (v == 2)
-    return boxColor[2];
-    else if (v == 3)
-    return boxColor[3];
-    else if (v == 4)
-    return boxColor[4];
-    else
-    return boxColor[0];
-}
