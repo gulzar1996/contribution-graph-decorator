@@ -259,7 +259,7 @@ let symbolsToBeDrawnArrayCounter = 0;
 
 let pixel = document.getElementsByClassName("day");
 
-function addSymbols(){
+function init(){
     for (let i = 0; i<str.length; i++)
     {
         let ch = str.charCodeAt(i);
@@ -341,6 +341,6 @@ function clear()
     }
 }
 
-addSymbols();
+init();
 clear();
 draw(symbolsToBeDrawnArray)
