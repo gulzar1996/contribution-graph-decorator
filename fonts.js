@@ -252,8 +252,11 @@ const space =
 let lowerCaseAlphabets = [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z];
 const boxColor = ["#ebedf0", "#c6e48b", "#7bc96f", "#239a3b", "#196127"];
 
-let str = "gulzar ahmed"
-const symbolsToBeDrawn = [];
+let str = "vinny chacks are bestie"
+
+let symbolsToBeDrawnArray = [];
+let symbolsToBeDrawnArrayCounter = 0;
+
 var pixel = document.getElementsByClassName("day");
 
 for (let i = 0; i<str.length; i++)
@@ -263,25 +266,26 @@ for (let i = 0; i<str.length; i++)
     const symbol = space
 
     //Three spaces to be added when space is found
-    symbolsToBeDrawn.push(symbol);
-    symbolsToBeDrawn.push(symbol);
-    symbolsToBeDrawn.push(symbol);
+    addSymbol(symbol);
+    addSymbol(symbol);
+    addSymbol(symbol);
     }
     else if (ch >= 97 && ch <= 123){
     const symbol = lowerCaseAlphabets[ch % 97];
 
     //Character followed by space is to be added
-    symbolsToBeDrawn.push(symbol);
-    symbolsToBeDrawn.push(space);
+    addSymbol(symbol);
+    addSymbol(space);
     }
 
     
 
     // console.log(String.fromCharCode(97 + i)+" : "+symbol[0].length)
 }
+    console.log(symbolsToBeDrawnArray)
 
 clear();
-draw(symbolsToBeDrawn)
+draw(symbolsToBeDrawnArray)
 
 
 function getColor(v)
@@ -298,23 +302,35 @@ function getColor(v)
     return boxColor[0];
 }
 
-function draw(symbolsToBeDrawn)
+function addSymbol(symbol)
+{
+    for (let i = 0; i < symbol.length; i++)
+            {
+                if ( symbolsToBeDrawnArray[i]!= null )
+                {
+                symbolsToBeDrawnArray[i] = symbolsToBeDrawnArray[i].concat(symbol[i])
+                } 
+                else
+                {
+                symbolsToBeDrawnArray[i] = symbol[i];
+                }
+                
+            }
+}
+
+function draw(symbolsToBeDrawnArray)
 {
 
     let pixelCounter = 0;
 
     while(pixelCounter <= 370)
     {
-        for (let i = 0; i < symbolsToBeDrawn.length; i++)
+        for (let i = 0; i < symbolsToBeDrawnArray[0].length; i++)
         {
-            let symbol = symbolsToBeDrawn[i];
-            for (let j = 0; j < symbol[0].length; j++)
+            for (let j = 0; j < symbolsToBeDrawnArray.length; j++)
             {
-                for ( let k = 0; k < 7; k++)
-                {
-                    let c = getColor(symbol[k][j])
+                    let c = getColor(symbolsToBeDrawnArray[j][i])
                     pixel[pixelCounter++].style.fill = c;
-                }
             }
         }
     }
