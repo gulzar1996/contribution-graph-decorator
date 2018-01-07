@@ -252,10 +252,11 @@ const space =
 let lowerCaseAlphabets = [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z];
 const boxColor = ["#ebedf0", "#c6e48b", "#7bc96f", "#239a3b", "#196127"];
 
-let str = "vinny and chacks are bestie"
+let str = "vinny and chacks are bbf"
 
 let symbolsToBeDrawnArray = [];
 let symbolsToBeDrawnArrayCounter = 0;
+let shift = 0;
 
 let pixel = document.getElementsByClassName("day");
 
@@ -310,24 +311,26 @@ function addSymbol(symbol)
                 }
                 
             }
+    symbolsToBeDrawnArrayCounter = symbolsToBeDrawnArray[0].length;        
 }
 
-function draw(symbolsToBeDrawnArray)
+function draw(symbolsToBeDrawnArray, shift)
 {
 
     let pixelCounter = 0;
 
-    while(pixelCounter <= 370)
-    {
-        for (let i = 0; i < symbolsToBeDrawnArray[0].length; i++)
+    
+        for (let i = shift; i < symbolsToBeDrawnArray[0].length; i++)
         {
             for (let j = 0; j < symbolsToBeDrawnArray.length; j++)
             {
                     let c = getColor(symbolsToBeDrawnArray[j][i])
+                    if(pixelCounter < 370)
                     pixel[pixelCounter++].style.fill = c;
+                    else
+                    break;
             }
         }
-    }
 
 }
 
@@ -343,4 +346,13 @@ function clear()
 
 init();
 clear();
-draw(symbolsToBeDrawnArray)
+
+
+function tick()
+{
+    if (shift > symbolsToBeDrawnArrayCounter)
+    shift = 0;
+    draw(symbolsToBeDrawnArray, shift++); 
+}
+
+setInterval( tick, 100);
