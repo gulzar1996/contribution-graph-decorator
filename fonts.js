@@ -259,34 +259,34 @@ let symbolsToBeDrawnArrayCounter = 0;
 
 var pixel = document.getElementsByClassName("day");
 
-for (let i = 0; i<str.length; i++)
-{
-    let ch = str.charCodeAt(i);
-    if ( ch == 32){
-    const symbol = space
 
-    //Three spaces to be added when space is found
-    addSymbol(symbol);
-    addSymbol(symbol);
-    addSymbol(symbol);
-    }
-    else if (ch >= 97 && ch <= 123){
-    const symbol = lowerCaseAlphabets[ch % 97];
-
-    //Character followed by space is to be added
-    addSymbol(symbol);
-    addSymbol(space);
-    }
-
-    
-
-    // console.log(String.fromCharCode(97 + i)+" : "+symbol[0].length)
-}
-    console.log(symbolsToBeDrawnArray)
-
+addSymbols();
 clear();
 draw(symbolsToBeDrawnArray)
 
+
+function addSymbols(){
+    for (let i = 0; i<str.length; i++)
+    {
+        let ch = str.charCodeAt(i);
+        if ( ch == 32){
+        const symbol = space
+    
+        //Three spaces to be added when space is found
+        addSymbol(symbol);
+        addSymbol(symbol);
+        addSymbol(symbol);
+        }
+        else if (ch >= 97 && ch <= 123){
+        const symbol = lowerCaseAlphabets[ch % 97];
+    
+        //Character followed by space is to be added
+        addSymbol(symbol);
+        addSymbol(space);
+        }
+    }
+    console.log(symbolsToBeDrawnArray)
+}
 
 function getColor(v)
 {
@@ -346,3 +346,4 @@ function clear()
         pixel[pixelCounter++].style.fill = boxColor[0];
     }
 }
+
