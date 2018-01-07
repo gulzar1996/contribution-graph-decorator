@@ -252,18 +252,12 @@ const space =
 let lowerCaseAlphabets = [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z];
 const boxColor = ["#ebedf0", "#c6e48b", "#7bc96f", "#239a3b", "#196127"];
 
-let str = "vinny chacks are bestie"
+let str = "vinny and chacks are bestie"
 
 let symbolsToBeDrawnArray = [];
 let symbolsToBeDrawnArrayCounter = 0;
 
-var pixel = document.getElementsByClassName("day");
-
-
-addSymbols();
-clear();
-draw(symbolsToBeDrawnArray)
-
+let pixel = document.getElementsByClassName("day");
 
 function addSymbols(){
     for (let i = 0; i<str.length; i++)
@@ -347,3 +341,6 @@ function clear()
     }
 }
 
+addSymbols();
+clear();
+draw(symbolsToBeDrawnArray)
