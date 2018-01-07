@@ -252,7 +252,7 @@ const space =
 let lowerCaseAlphabets = [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z];
 const boxColor = ["#ebedf0", "#c6e48b", "#7bc96f", "#239a3b", "#196127"];
 
-let str = "vinny and chacks are bbf"
+let str = "  vinny and chacks are bbf"
 
 let symbolsToBeDrawnArray = [];
 let symbolsToBeDrawnArrayCounter = 0;
@@ -311,7 +311,9 @@ function addSymbol(symbol)
                 }
                 
             }
-    symbolsToBeDrawnArrayCounter = symbolsToBeDrawnArray[0].length;        
+    symbolsToBeDrawnArrayCounter = symbolsToBeDrawnArray[0].length;  
+    //temp (Hack!)   
+    symbolsToBeDrawnArrayCounter = parseInt(symbolsToBeDrawnArrayCounter)-45;   
 }
 
 function draw(symbolsToBeDrawnArray, shift)
@@ -350,9 +352,9 @@ clear();
 
 function tick()
 {
-    if (shift > symbolsToBeDrawnArrayCounter)
+    if (shift > (symbolsToBeDrawnArrayCounter))
     shift = 0;
-    draw(symbolsToBeDrawnArray, shift++); 
+    draw(symbolsToBeDrawnArray, shift++);   
 }
 
 setInterval( tick, 100);
