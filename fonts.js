@@ -267,7 +267,7 @@ for (let i = 0; i<str.length; i++)
     symbolsToBeDrawn.push(symbol);
     symbolsToBeDrawn.push(symbol);
     }
-    else{
+    else if (ch >= 97 && ch <= 123){
     const symbol = lowerCaseAlphabets[ch % 97];
 
     //Character followed by space is to be added
