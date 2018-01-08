@@ -346,8 +346,9 @@ function clear()
     }
 }
 
+//clear();
 init();
-clear();
+
 
 
 function tick()
