@@ -9,7 +9,7 @@ Installation
 ### Changing text
   
  - Open `index.js`
- - Type your text inside qoutes `let str = ""`
+ - Type your text inside quotes `let str = ""`
 
 ### Setup Chrome extension
 
