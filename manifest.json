@@ -9,7 +9,7 @@
 
     "content_scripts": [
       {
-        "matches": ["*://github.com/gulzar1996"],
+        "matches": ["*://github.com/*"],
         "js": ["index.js"]
       }
     ]
