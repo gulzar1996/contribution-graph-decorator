@@ -1,7 +1,11 @@
-# Animating Text in Github's Contribution graph
+# Animation in Github's Contribution graph
 Chrome/Firefox extension which displays text in Github contribution graph
 
+## Animating Text 
 ![Image](/screenshots/demo1.gif)
+
+## Animating Clock 
+![Image](/screenshots/demo2.gif)
 
 Installation
 ===============
@@ -10,6 +14,10 @@ Installation
   
  - Open `index.js`
  - Type your text inside quotes `let str = ""`
+ 
+### Animating Clock
+  
+ - Change branch to `animatingClock`
 
 ### Setup Chrome extension
 
